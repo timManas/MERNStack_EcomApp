@@ -2,3 +2,8 @@ body {
     font-family: 'Open Sans Condensed';
     padding: 20px 60px          /* This padding is applied to all of the pages in the application*/
 }
+
+a {
+    text-decoration: none;
+    color: blue;
+}
