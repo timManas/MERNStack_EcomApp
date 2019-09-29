@@ -1,5 +1,5 @@
 import React from "react";
-import MenuItems from "../menu-item/menu-item.components";
+import MenuItem from "../menu-item/menu-item.components";
 import "./directory.styles.scss";
 
 // Collective view of all the different menu's
@@ -14,7 +14,7 @@ class Directory extends React.Component {
           title: "hats",
           imageUrl: "https://i.ibb.co/cvpntL1/hats.png",
           id: 1,
-          linkUrl: "shop/hats"
+          linkUrl: "hats"
         },
         {
           title: "jackets",
@@ -65,7 +65,7 @@ class Directory extends React.Component {
     return (
       <div className="directory-menu">
         {this.state.sections.map(({id, ...otherSectionsProps}) => (
-          <MenuItems key={id} {...otherSectionsProps}/>
+          <MenuItem key={id} {...otherSectionsProps}/>
         ))}
       </div>
     );
