@@ -46,13 +46,26 @@ class Directory extends React.Component {
     };
   }
 
+  // render() {
+  //   // This takes the values from the state and prints them out using destructuring
+  //   // {title, imageURL, id} are passed in as arguments as can be invoked in the function
+  //   return (
+  //     <div className="directory-menu">
+  //       {this.state.sections.map(({ title, imageUrl, id, size, linkUrl }) => (
+  //         <MenuItems key={id} title={title} imageUrl={imageUrl} size={size} linkUrl={linkUrl}/>
+  //       ))}
+  //     </div>
+  //   );
+  // }
+
   render() {
     // This takes the values from the state and prints them out using destructuring
     // {title, imageURL, id} are passed in as arguments as can be invoked in the function
+    // We use an ES6 trick here 
     return (
       <div className="directory-menu">
-        {this.state.sections.map(({ title, imageUrl, id, size }) => (
-          <MenuItems key={id} title={title} imageUrl={imageUrl} size={size}/>
+        {this.state.sections.map(({id, ...otherSectionsProps}) => (
+          <MenuItems key={id} {...otherSectionsProps}/>
         ))}
       </div>
     );
