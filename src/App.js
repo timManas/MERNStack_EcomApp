@@ -23,18 +23,27 @@ class App extends React.Component {
     }
   }
 
+  unsubscribeFromAuth = null
+
+  // Check if the same user is signed in. If yes, they dont change the session. Firebase will assume
+  // Same user is logged in
   componentDidMount() {
-    auth.onAuthStateChanged(user => {
+    this.unsubscribeFromAuth = auth.onAuthStateChanged(user => {
       this.setState({currentUser: user});
       
       console.log(user)
     })
   }
 
+  // This will close the subscription if the user is logged out, session change...etc
+  componentWillUnmount() {
+    this.unsubscribeFromAuth();
+  }
+
   render() {
     return (
       <div>
-        <Header /> 
+        <Header currentUser={this.state.currentUser}/> 
         <Switch>
           <Route exact path='/' component={HomePage} />
           <Route path='/shop' component={ShopPage} />
