@@ -28,9 +28,23 @@ class App extends React.Component {
   // Check if the same user is signed in. If yes, they dont change the session. Firebase will assume
   // Same user is logged in
   componentDidMount() {
-    this.unsubscribeFromAuth = auth.onAuthStateChanged(async user => {
+    this.unsubscribeFromAuth = auth.onAuthStateChanged(async userAuth => {
       // this.setState({currentUser: user});
-      createUserProfileDocument(user)
+      // createUserProfileDocument(user)
+
+      if (userAuth) {
+        const userRef = await createUserProfileDocument(userAuth)
+        userRef.onSnapshot(snapShot => {
+          this.setState({
+            currentUser: {id: snapShot.id, ...snapShot.data()}
+          }, () => {
+            console.log(this.state)
+          })
+        })
+         
+      } else {
+        this.setState({currentUser: userAuth})
+      }
       
     })
   }
