@@ -1,14 +1,14 @@
-import React from "react";
-import ReactDOM from "react-dom";
-import { BrowserRouter } from "react-router-dom";
+import React from 'react';
+import ReactDOM from 'react-dom';
+import { BrowserRouter } from 'react-router-dom';
 
 // Redux Stuff here
-import { Provider } from "react-redux";
+import { Provider } from 'react-redux';
+import store from './redux/store';         // This is the STORE !!!! Saves all the states here
 
 import "./index.css";
 import App from "./App";
 
-import store from './App'         // This is the STORE !!!! Saves all the states here
 
 // The BrowserRouter wraps around the application
 // That way we can get all the functionality that the router provides
