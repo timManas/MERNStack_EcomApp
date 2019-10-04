@@ -5,6 +5,7 @@ import {connect} from 'react-redux';        // Connect is a high order component
 
 import CartIcon from '../cart-icon/cart-icon.component'
 import {ReactComponent as Logo} from '../../assets/crown.svg'
+import CartDropDown from '../cart-dropdown/cart-dropdown.component'
 
 import './header.styles.scss'
 
@@ -32,7 +33,7 @@ const Header = ({currentUser}) => (
             <CartIcon />
 
         </div>
-
+        <CartDropDown />
     </div>
 )
 
