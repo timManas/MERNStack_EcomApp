@@ -1,5 +1,5 @@
 import React from 'react'
-import { ReactComponent as ShoppingIcon } from '../../assets/crown.svg'  // The shopping Bag svg is fucked so we replaced it with the crown ...LOL
+import { ReactComponent as ShoppingIcon } from '../../assets/shoppingBag.svg'  // The shopping Bag svg is fucked so we replaced it with the crown ...LOL
 import './cart-icon.styles.scss'
 
 const CartIcon = () => (
