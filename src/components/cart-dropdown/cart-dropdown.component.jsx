@@ -8,7 +8,8 @@ import { connect } from 'react-redux'
 const CartDropDown = ({cartItems}) => (
     <div className='cart-dropdown'>
         <div className='cart-items'> 
-            {cartItems.map(cartItem => (
+            {   // This actually adds the item to the Cart on the GUI
+                cartItems.map(cartItem => (
                 <CartItem key={cartItem.key} item={cartItem} /> 
             ))}
         </div>
@@ -16,6 +17,7 @@ const CartDropDown = ({cartItems}) => (
     </div>
 )
 
+// Question: This part makes no sense to me at all
 const mapStateToProps = ({cart: {cartItems}}) => ({
     cartItems
 })
