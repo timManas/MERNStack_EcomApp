@@ -63,6 +63,8 @@ class App extends React.Component {
   
 }
 
+// Question: What is dispatch in this case ? 
+// - dispatch() is a way for redux to know what object is being passed is an action object that will be passed it to user
 const mapDispatchToProps = dispatch => ({
   setCurrentUser: user => dispatch(setCurrentUser(user))
 })
