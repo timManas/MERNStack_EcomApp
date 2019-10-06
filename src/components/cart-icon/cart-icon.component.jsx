@@ -5,6 +5,8 @@ import './cart-icon.styles.scss'
 import { connect } from 'react-redux'           // Higher order component
 import { toggleCartHidden } from '../../redux/cart/cart.actions'
 
+import { selectCartItemsCount } from '../../redux/cart/cart.selectors';
+
 const CartIcon = ({toggleCartHidden, itemCount}) => (
     <div className='cart-icon' onClick={toggleCartHidden}>
         <ShoppingIcon className='shopping-Icon' />
@@ -18,10 +20,9 @@ const mapDispatchToProps = dispatch => ({
 }) 
 
 
-const mapStateToProps = ({cart: { cartItems}}) => ({
-    itemCount: cartItems.reduce(
-        (accumalatedQuantity, cartItem) => accumalatedQuantity + cartItem.quantity, 0
-    )
+// This is known as a "Selector"
+const mapStateToProps = (state) => ({
+    itemCount: selectCartItemsCount(state)
 
 })
 
