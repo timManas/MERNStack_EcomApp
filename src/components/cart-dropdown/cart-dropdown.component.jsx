@@ -9,9 +9,9 @@ import {  selectCartItems } from '../../redux/cart/cart.selectors'
 import { createStructuredSelector } from 'reselect'
 
 import {  withRouter } from 'react-router-dom'              // Need this for Checkout Page
-
+import { toggleCartHidden } from '../../redux/cart/cart.actions'
  
-const CartDropDown = ({cartItems, history}) => (
+const CartDropDown = ({cartItems, history, dispatch}) => (
     <div className='cart-dropdown'>
         <div className='cart-items'> 
             {   // This actually adds the item to the Cart on the GUI
@@ -26,7 +26,13 @@ const CartDropDown = ({cartItems, history}) => (
             ) 
         }
         </div>
-        <CustomButton onClick={() => history.push('./checkout')}>GO TO CHECKOUT</CustomButton>
+        <CustomButton 
+        onClick={() => 
+            {history.push('./checkout');
+            dispatch(toggleCartHidden())
+        }}>
+        GO TO CHECKOUT
+        </CustomButton>
     </div>
 )
 
