@@ -14,6 +14,8 @@ import { setCurrentUser } from './redux/user/user.actions'
 import { createStructuredSelector } from 'reselect'
 import { selectCurrentUser } from './redux/user/user.selector'
 
+import CheckoutPage from './pages/checkout/checkout.component'
+
 // The switch element tag here acts like a switch statement
 // It will only route to one  destination while ignoring other routes
 // We need to place the header OUTSIDE of the switch component. Why ? So our header is available for all pages
@@ -59,6 +61,8 @@ class App extends React.Component {
         <Switch>
           <Route exact path='/' component={HomePage} />
           <Route path='/shop' component={ShopPage} />
+          <Route exact path='/checkout' component={CheckoutPage} />
+          
           <Route exact path='/signin' render={() => this.props.currentUser ? (<Redirect to='/'/>) : (<SignInAndSignUpPage />)} />
         </Switch>
       </div>
