@@ -7,6 +7,10 @@ import CartIcon from '../cart-icon/cart-icon.component'
 import {ReactComponent as Logo} from '../../assets/crown.svg'
 import CartDropDown from '../cart-dropdown/cart-dropdown.component'
 
+import { createStructuredSelector } from 'reselect'
+import { selectCurrentUser } from '../../redux/user/user.selector'
+import { selectCartHidden } from '../../redux/cart/cart.selectors'
+
 import './header.styles.scss'
 
 // Woow wtf, the 'Logo' is a component 
@@ -42,11 +46,17 @@ const Header = ({currentUser, hidden}) => (
 )
 
 // state argument here the root reducer
-const mapStateToProps = ({user: {currentUser}, cart: {hidden}}) => ({
-    // currentUser: state.user.currentUser
-    currentUser,
-    hidden 
+// const mapStateToProps = ({user: {currentUser}, cart: {hidden}}) => ({
+//     // currentUser: state.user.currentUser
+//     currentUser,
+//     hidden 
+// })
+
+const mapStateToProps = createStructuredSelector({
+    currentUser: selectCurrentUser,
+    hidden: selectCartHidden
 })
+
 
 // export default Header
 export default connect(mapStateToProps)(Header);

@@ -10,6 +10,10 @@ import SignInAndSignUpPage from './pages/sign-in-and-sign-up/sign-in-and-sign-up
 import Header from './components/header/header.component'
 import { auth, createUserProfileDocument } from './firebase/firebase.utils'    // We need this to store the state of our app whenever our user logs in
 import { setCurrentUser } from './redux/user/user.actions'
+
+import { createStructuredSelector } from 'reselect'
+import { selectCurrentUser } from './redux/user/user.selector'
+
 // The switch element tag here acts like a switch statement
 // It will only route to one  destination while ignoring other routes
 // We need to place the header OUTSIDE of the switch component. Why ? So our header is available for all pages
@@ -62,8 +66,10 @@ class App extends React.Component {
   }  
 }
 
-const mapStateToProps = ({ user }) => (
-  {currentUser: user.currentUser}
+const mapStateToProps = createStructuredSelector(
+  {
+    currentUser: selectCurrentUser
+  }
 )
 
 // Question: What is dispatch in this case ? 
