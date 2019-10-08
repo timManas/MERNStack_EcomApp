@@ -8,6 +8,8 @@ import cartReducer from './cart/cart.reducer'
 import { persistReducer } from 'redux-persist'      // We also want the reducer to be persistent
 import storage from 'redux-persist/lib/storage'     // This is the mobile storage. Telling Redux that i want to use local storage as default storage
 
+import directoryReducer from './directory/directory.reducer'
+
 const persistConfig = {
     key:'root',
     storage,
@@ -16,7 +18,8 @@ const persistConfig = {
 
 const rootReducer = combineReducers({
     user: userReducer,
-    cart: cartReducer
+    cart: cartReducer,
+    directory: directoryReducer
 })
 
 export default persistReducer(persistConfig, rootReducer)
