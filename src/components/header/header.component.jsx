@@ -8,7 +8,7 @@ import {ReactComponent as Logo} from '../../assets/crown.svg'
 import CartDropDown from '../cart-dropdown/cart-dropdown.component'
 
 import { createStructuredSelector } from 'reselect'
-import { selectCurrentUser } from '../../redux/user/user.selector'
+import { selectCurrentUser } from '../../redux/user/user.selectors'
 import { selectCartHidden } from '../../redux/cart/cart.selectors'
 
 import './header.styles.scss'

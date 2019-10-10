@@ -1,20 +1,19 @@
-import {  UserActionTypes } from './user.types'
+import { UserActionTypes } from './user.types';
 
 const INITIAL_STATE = {
-    currentUser: null
-}
+  currentUser: null
+};
 
-// This user gets every single action that gets fired
 const userReducer = (state = INITIAL_STATE, action) => {
-    switch (action.type) {
-        case UserActionTypes.SET_CURRENT_USER:        // 
-            return {
-                ...state,
-                currentUser: action.payload
-            }
-        default: 
-            return state        // If nothing matches, then return state
-    }
-}
+  switch (action.type) {
+    case UserActionTypes.SET_CURRENT_USER:
+      return {
+        ...state,
+        currentUser: action.payload
+      };
+    default:
+      return state;
+  }
+};
 
-export default userReducer
+export default userReducer;
