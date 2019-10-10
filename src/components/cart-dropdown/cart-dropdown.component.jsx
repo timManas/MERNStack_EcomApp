@@ -28,7 +28,7 @@ const CartDropDown = ({cartItems, history, dispatch}) => (
         </div>
         <CustomButton 
         onClick={() => 
-            {history.push('./checkout');
+            {history.push('/checkout');
             dispatch(toggleCartHidden())
         }}>
         GO TO CHECKOUT
@@ -49,3 +49,4 @@ export default withRouter(connect(mapStateToProps)(CartDropDown))
 WithRouter just takes a higher component will match the history
 
 */
+
