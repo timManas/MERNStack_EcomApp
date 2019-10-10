@@ -4,7 +4,12 @@ import logger from 'redux-logger'
 import rootReducer from './root-reducer'
 import { persistStore } from 'redux-persist'        // Allows our browser to cache and store
 
-const middlewares = [logger]        // this is the middlewre logger. Useful for debugging
+const middlewares = []        // this is the middlewre logger. Useful for debugging
+
+if (process.env.NODE_ENV === 'development') {
+    middlewares.push(logger)
+}
+
 
 // Spread all array values in middleware as individual arguments
 export const store = createStore(rootReducer, applyMiddleware(...middlewares))
