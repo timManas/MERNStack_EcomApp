@@ -11,38 +11,38 @@ import { createStructuredSelector } from 'reselect'
 import { selectCurrentUser } from '../../redux/user/user.selectors'
 import { selectCartHidden } from '../../redux/cart/cart.selectors'
 
-import './header.styles.scss'
+import { HeaderContainer, LogoContainer, OptionsContainer, OptionDiv, OptionLink } from './header.styles'
 
 // Woow wtf, the 'Logo' is a component 
 const Header = ({currentUser, hidden}) => (
-    <div className='header'>
-        <Link className='logo-container' to="/">
+    <HeaderContainer>
+        <LogoContainer to="/">
             <Logo className='logo'/>
-        </Link>
+        </LogoContainer>
 
-        <div className='options'>
-            <Link className='option' to='/shop'>
+        <OptionsContainer>
+            <OptionLink to='/shop'>
                 SHOP
-            </Link>
-            <Link className='option' to='/shop'>
+            </OptionLink>
+            <OptionLink to='/shop'>
                 CONTACT
-            </Link>
+            </OptionLink>
             {   // This is JavaScript
                 currentUser ? 
-                (<div className='option' onClick={() => auth.signOut()}>SIGN OUT</div>)
+                (<OptionDiv onClick={() => auth.signOut()}>SIGN OUT</OptionDiv>)
                 :
-                (<Link className='option' to='/signin'>SIGN IN</Link>)
+                (<OptionLink to='/signin'>SIGN IN</OptionLink>)
 
             }
             <CartIcon />
 
-        </div>
+        </OptionsContainer>
 
         {
             hidden ? null :  <CartDropDown />
         }
        
-    </div>
+    </HeaderContainer>
 )
 
 // state argument here the root reducer

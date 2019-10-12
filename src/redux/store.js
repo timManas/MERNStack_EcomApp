@@ -6,6 +6,7 @@ import { persistStore } from 'redux-persist'        // Allows our browser to cac
 
 const middlewares = []        // this is the middlewre logger. Useful for debugging
 
+// Set the logger ONLY on dev. Does not show up in Prod Env
 if (process.env.NODE_ENV === 'development') {
     middlewares.push(logger)
 }
