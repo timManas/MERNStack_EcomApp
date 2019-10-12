@@ -1,5 +1,4 @@
 import React from 'react'
-import {Link} from 'react-router-dom'
 import {auth} from '../../firebase/firebase.utils'
 import {connect} from 'react-redux';        // Connect is a high order component that allows us to modify our component to have access to things related to redux 
 
@@ -11,7 +10,7 @@ import { createStructuredSelector } from 'reselect'
 import { selectCurrentUser } from '../../redux/user/user.selectors'
 import { selectCartHidden } from '../../redux/cart/cart.selectors'
 
-import { HeaderContainer, LogoContainer, OptionsContainer, OptionDiv, OptionLink } from './header.styles'
+import { HeaderContainer, LogoContainer, OptionsContainer, OptionLink } from './header.styles'
 
 // Woow wtf, the 'Logo' is a component 
 const Header = ({currentUser, hidden}) => (
@@ -29,7 +28,7 @@ const Header = ({currentUser, hidden}) => (
             </OptionLink>
             {   // This is JavaScript
                 currentUser ? 
-                (<OptionDiv onClick={() => auth.signOut()}>SIGN OUT</OptionDiv>)
+                (<OptionLink as='div'  onClick={() => auth.signOut()}>SIGN OUT</OptionLink>)
                 :
                 (<OptionLink to='/signin'>SIGN IN</OptionLink>)
 
