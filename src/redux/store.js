@@ -4,7 +4,9 @@ import logger from 'redux-logger'
 import rootReducer from './root-reducer'
 import { persistStore } from 'redux-persist'        // Allows our browser to cache and store
 
-const middlewares = []        // this is the middlewre logger. Useful for debugging
+import thunk from 'redux-thunk'             // Asynch event handling and fires multiple actions
+
+const middlewares = [thunk]        // this is the middlewre logger. Useful for debugging
 
 // Set the logger ONLY on dev. Does not show up in Prod Env
 if (process.env.NODE_ENV === 'development') {
