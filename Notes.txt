@@ -1,0 +1,474 @@
+Keywords
+1. Declarative
+2. JSX
+3. Components
+4. State
+5. Props
+6. VirtualDOM
+
+React Concepts
+- Dont touch the DOM, React will do it 
+- Build Websites like lego blocks
+- One directional flow 
+ - State + Components(JSX) -> VirtualDOM
+
+Why React ? 
+- 
+
+Key Components
+1. Decide on Components
+2. Decide the state and where it lives
+3. What changes when state changes
+
+0. Install nvm by going to the nvm website 
+- type this in commandline
+"curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.34.0/install.sh | bash"
+
+
+
+1. Use nvm to switch between different Node versions
+ex. nvm install 10.16.3
+
+
+NPM Vs Yarn
+- Install dependencies from package.json: npm install == yarn
+- Install a package and add to package.json: npm install package --save == yarn add package
+- Install a devDependency to package.json: npm install package --save-dev == yarn add package --dev
+- Remove a dependency from package.json: npm uninstall package --save == yarn remove package
+- Upgrade a package to its latest version: npm update --save == yarn upgrade
+- Install a package globally: npm install package -g == yarn global add package
+- npm run start == yarn start
+
+
+2. You can download React project using:
+- npm create-create-react-app monsters-rolodex
+
+3. All the notes int he src folder, once the user builds using "npm run build"
+will create a list of files in the "build" folder TO BE PLACED in the server.
+Copy/paste to server 
+
+4. Babel will convert our react files into a format that all browsers will understand 
+
+5. Webpack is a module bundler. It will take all our files ex.JS and bundle it all together for production
+
+6. The build folder is what we use to deploy our application
+
+7. Package.json allows us to install other people code or components. Think of like as a master file which contains all the dependencies
+
+
+8. import React from "react" - allows us to write HTML like syntax  inside a JS file. And it understands it because of it react librart
+
+9. REACTDOM is the render which modidies the DOM
+
+10. DO NOT EJECT (npm run eject). Mostly because we want the latest features
+
+11. In order to create a class we need to import a component using {Component}
+ex. import React, {Component} from 'react';
+
+12. State is some JS Object that we can access at any point in our class 
+
+13. When using key in JS "this.state.monsters.map()". We need to add the "Key" to each object to allow REACT to know which element to modify
+
+
+14. "Component" is part of the React library.
+15. Id you did not use Destructuring(i.e {Component}), We can still use components by "extending" and using "React.Component" 
+
+16. the "render()" method is built from React Component 
+
+17. super() helps us by calling React.Components constructor
+
+18. Lifecycle methods - Methods which get called a different stages and rendered 
+
+19. The most important one is "componentDidMount"
+- Mounting is essentially when react puts our component on page and calls the DOM
+
+20. Two ways of building components
+1. By class syntax - ex. class App extends  Components{}
+2. By arrow function - ex. export const Searchbox = (props) => ()
+
+21. Webpack and Babel convert JSX to JS file
+  
+22. Children contains references to the inner tags of a component
+
+23. What is alt ?? in element properties ? ex.  <img alt="monster" 
+
+24. For the input field, this is how you add to the state
+25. SetState is a async call
+26. IF THERE IS SOMETHIGN YOU WANT TO DO RIGHT AFTER SET STATE, then you can pass in a second parameter to do it: 
+Ex. onChange={e => this.setState({searchField: e.target.value}, () => console.log(this.state))}
+
+
+27. There are two types of components
+- Class Components
+- Functional Components
+
+28. Functional Components do NOT have access to state (this is a class method)  and do not have lifecycle methods
+However, they are able to "render" HTML
+Basically - It gets some properties and returns some HTML tags 
+
+
+27. this.handleChange(e) is equivalent too {e => this.handleChange}
+Hence we don't need to add the argument "e", because it is explicitly saying it is being passed into it already
+
+28. Bind Function
+- Creates a "shadow" of the original funciton and combines them together
+- Why ? Because, the this keyboard doesent know what to reference
+- Comment this line, and you will get an error
+- Instead you can use Array Function to get  referene for "this"
+- Arrow functions allow you to set "this" in whatever context that declared it
+
+
+29. DO NOT DO NOT  use () inside the render() function. Otherwise, every time you refresh
+the page, you that function will execute
+ex. 
+render() {
+	return (
+		<div>
+			<button onClick={this.handleClick()}>click1</button>
+		</div>
+	)
+}
+
+If you want the function to work ONLY when click DO NOT include the "()" in handleClick
+Ex. 
+render() {
+	return (
+		<div>
+			<button onClick={this.handleClick}>click1</button>
+		</div>
+	)
+}
+
+
+30. Use arrow functions on any class methods you define and aren't part of React (i.e. render(), componentDidMount()).
+
+
+39. Tip: Type in "html:5" and this will automatically create a HTML template for you on VS Code
+
+40. virtual Dom is a just a complete copy of the actual dom.
+The VDom is a copy of actual dom but in JS
+
+41. If you need to modify the state right after, then add a second parameter where you use that second parameter. See #26
+
+
+
+
+==========================================================================================
+
+Master Class
+
+1. Start off by invoking yarn
+- type "yarn"
+
+2. Create react App by typing:
+"npx create-react-app crwn-clothing" (NOTE !! crwn-clothing is now the PARENT Folder .go inside of it)
+
+3. Do Yarn install inside crwn-clothing folder
+
+3. Question when do you use  () => (...) Vs. () => {...}
+
+4. yarn start does not work. "error Command 'start' not found"
+- YOU NEED BE on the Parent Folder. So you can access the package.json
+- If not 
+1. delete yarn.lock
+2. delete node-module
+3. run yarn cache clean
+4. run yarn install
+
+5. SAS is just an upgraded version of CSS. Reads very similar to CSS 
+- Add it by typing "yarn add node-sass"
+- REACTJS will actually convert our SASS files to CSS files because browser can only read CSS files
+
+6. Question: What is the node_modules folder ? Why do we need it ? 
+- Node_modules folder comes built in with react app
+
+7. For yarn you will get "yarn-lock.json" but if you are using npm, you will see "package-lock.json"
+
+8. node_modules contain libraries that the application uses 
+
+8. package-lock.json files pack all the different version that is needed to run the application 
+
+9. When we copy a font from google fonts, we add the link into the index.html in the head tag 
+
+10. Position:absolue tells the element is positioned absolutely to its first position parent
+
+11. The Router for React which is industry standard is called "React Router DOM"
+- Most popular and most supported
+- Follows component driven architecture
+
+12. BrowserRouter is a component that wraps around the application
+
+13. <Route exact path component={}>
+- component is what we want to render
+- path is a string value which is a location to the current place we are sitting at
+- exact is true or false - no value is true: If left true, then the path must be exactly the same. 
+
+14. the Switch component (i.e <Switch></Switch>) - If it finds a path, it will route to that, and will not route anything else 
+- Gives more control over our code
+- As long as one route matches, that's the one thing it will route 
+
+15. Remember that REACT is a single page application (SPA). It is not actually redirecting you or rebuilding the application every time there is a change to the URL
+- Essentially, it is hijacking the JS and modifying what part of the DOM to take/remove/modify
+
+16. Theres two ways navigate in "react-router-dom"
+1. Dynamically updating the URL - 
+2. Link (ex. <Link to='/topics'>Topics</Link> - Sorta link an ahref link
+
+17. Properties of a Route  
+1. History props: 
+2. Location props: Gives us full path name of where we are currently
+3. Match: Tells us path of the request and whether if it was an exact match or not
+  - Within match there is "topics" which is followed by the "xxx/:topic" where it could by something dynamic
+
+18. Why would we want to take a look at match ?
+- Allows us to build a nested route structure 
+
+19. withRouter component is a higher order component
+- Essentially a function that takes a component as an argument and returns a modified component
+
+20. Trick: For ES6 if we passing in the parameters into a key/value pair of the same name, then we can use {...otherSectionsProps} in the inner component 
+Ex. 
+Before: {this.state.sections.map(({ title, imageUrl, id, size, linkUrl }) => (
+          <MenuItems key={id} title={title} imageUrl={imageUrl} size={size} linkUrl={linkUrl}/>      ))}
+After: {this.state.sections.map(({id, ...otherSectionsProps}) => (
+          <MenuItems key={id} {...otherSectionsProps}/>
+        ))}
+
+21. return (
+            <div>SHOP PAGE</div>
+        )
+IS EQUIVALENT TOO 
+return <div>SHOP PAGE</div>;
+
+22. import { ReactComponent as Logo }
+The ReactComponent import name is special and tells Create React App that you want a React component that renders an SVG, rather than its filename. 
+
+23. To get rid of underline for link because our Link components are getting converted by Babel/Webpack into "a" tags (ex. a href=...), then 
+
+
+24. event.preventDefault() - Allows us to take full control of the submit process instead of relying on the fault behaviour. Better customizability 
+
+25. mixin - are part of sass which are usable component on css 
+
+26. If we a have an input type "submit". If that input type is submitted, it will trigger the "onSubmit" function (ex. onSubmit={this.handleSubmit}
+
+27. Firebase is backend End to end solution which contains the following
+- Database
+- Server
+- Authentication
+
+28. Firesbase gives us the ability to easy OAuth authentication which is difficult to create from scratch. 
+
+29. Firebase allows FE Devs to get a lot of features without having to do a lot of backend dev
+
+30. How to create a firebase project
+- Go to website
+- Click on "Go to Console" button on top right
+- Create a project
+- Type name
+- Click on Create project.
+- Once it finishes, click on Develop Tab
+	- Click on <> button
+	- Create an App Nickname
+	- Copy JS object 
+		Ex: {
+    apiKey: "AIzaSyCoHoLC91Y8uxA-A5dyTBnmWD5JhqUyPMo",
+    authDomain: "crwn-db-afc21.firebaseapp.com",
+    databaseURL: "https://crwn-db-afc21.firebaseio.com",
+    projectId: "crwn-db-afc21",
+    storageBucket: "",
+    messagingSenderId: "1033368157567",
+    appId: "1:1033368157567:web:edb0692c8e7ba3e9072e4a",
+    measurementId: "G-PD9ZNX07YQ"
+  };
+	- Go to Terminal, type in "yarn add firebase"
+	- Add Firebase usingg npm
+	- Create firebase.utils.js
+	- Paste code there
+
+- Thats it 
+
+31. In the Firebase console there are main features we need to focus on
+- Authentication: Sign in 
+- Database: holds all the data we want to store in our Firebase project
+- Storage: storing assets, pics, videos
+- Hosting: If we want firebase to handle our hosting for us
+
+32. OAuth allows users to sign in with any third party services (ex. Facebook, twitter, gmail) that they already have 
+
+33. Firestore is the Database of Firebase
+
+34. Firestore is a NoSQL Database
+- JSON objects
+- It sounds like:
+Collections == 'Key' 
+Documents == 'Value'
+- Each document can how have its own Document there by making it a collection as well
+
+35. Rule of Thumb for NoSQL, its always collections().getDocument() ...then collections then document
+
+36. To Query a document you can use: 2 ways to do it
+- firestore.collection('collections).doc('doc').collections('collect').doc('doc')....
+- firestore.doc('collections/doc/collect/doc')
+
+37. Uid is the dynamically generated id that google made for us when we authenticated the user using google sign in
+
+38. Even though we authenticated user, we still need to put user info into DB
+
+39. Firebase will either return as QueryReference or QuerySnapshot
+- A query is a request that gives us something from the DB
+
+40. Firestore will return two types of objects:
+1. Reference
+2. Snapshot
+
+41. Out of these two objects they can either be 
+1. Collection
+2. Documents
+
+42. Firestore will always return us these objects even if nothing exists in query
+
+43. The query referent object does NOT have the actual data of the collection or document. Instead, it has properties that tells us details about it or the method to get the Snapshot object which gives us the data we are looking for
+- We get them by calling 
+firestore.doc('/users/:usersId')
+firestore.collections('/users')
+
+44. Document reference objects: perform CRUD operations.
+- They commands are: .set(), .get(), .update(), .delete()
+- We can also add documents to collections using .add()
+
+45. documentRef returns documentSnapshot()
+46. collectionRef returns querySnapShot()
+
+47. Snapshot represents the data
+
+48. Document Snapshot
+- We get documentSnapshot object from documentReference using the .get()
+- Allows us to check if a document exists at the query using .exists()
+- Allows us to get actual properties of object by calling .data() method 
+
+49. Redux == this.state()
+- Allows react state to be more scaleable
+- State management library for managing the state
+
+How ? 
+- Redux keeps everything on one "God" state
+- Properties will now modify the God state 
+	- Those changes will re-render and may affect different states ...etc
+
+Why  Redux ? 
+- Good for managing large state 
+- Useful for sharing data between components
+- Has predictable state management using 3 principles:
+1. Single source of truth (Only has one object ..i.e God Object)
+2. State is read only (i.e immutabile)
+3. Changes using pure functions (receives an input and always return an output which is predictable ...i.e same input thousand times, same output thousand times ex. 2+2 = 4)
+
+ 
+Redux Flow
+
+Action -> Root Reducer -> Store -> DOM Changes
+Action: User actions. ex clicking on a button
+Root Reducer: Pure function. Receives an input and returns an expected output
+Output is the "Store" 
+Store: Output of the Root reducer. This is the entire state of the App
+React will then notice this State change and will now modify the DOM
+
+50. Redux uses the FLUX Pattern
+Action -> Dispatcher -> Store -> View
+- Used to solve problems in an organized fashion 
+- One way data flow
+- Very different from MVC (Redux is better at managing state)
+
+51. Redux === this.state (in React)
+
+Note: you can also have React state in conjunction with Redux state 
+
+Reducers: Represent a "slice" of the state
+- The Root Reducer contains all the states 
+- They are technically functions (Pure functions)
+Ex. Root Reducer: {
+	Home: {...},
+	Shop: {...}.
+	User: {...}
+}
+
+Reducers listen to every action
+- Uses a switch statement
+- Looks for the action.type and returns corresponding output
+
+
+52. Every reduced is just a function which takes a state and action
+- Based off the action: it will determine if it needs to re-render
+
+53. Revised Redux Flow
+Action -> Middleware -> RootReducer -> Store -> Dom
+
+Middleware: Redux middleware (visual representation of what these actions do)
+- useful for us to understand 
+
+54. We add all our redux files in index.js
+
+55. Provider: Redux component that wraps around entire application
+- Provider wraps around because it allows us to get access to everything in the store from the redux state
+
+56. Higher components are just components which takes components are arguments and return a "super" up component 
+
+57. You can restructure more by using
+({user: {currentUser}, cart: {hidden}})
+
+58. "Selectors" - pulls off a small portion of that state 
+
+59. You have two types of storage in the browser
+1. window.localStorage - Persist until we close our browser
+2. window.sessionStorage - Persist as long as our tab is open even if refresh the page
+
+60. How to install stripe for react ? 
+npm install react-stripe-checkout
+
+61. How to put stuff onto Herok
+1. Log into Heroku using: heroku login
+2. Create the application repo for Herok:
+heroku create crwn-alive --buildpack https://github.com/mars/create-react-app-buildpack.git
+
+3. Push to Heroku app
+git push heroku master
+
+4. Done
+
+
+62. You can use JS to style the CSS components using 
+CSS Styled components aka ...CSS in JS
+Able to encapsulate all of CSS in JS components which are relevant
+-Why do we do this ? Because styles may leak across different components and we want to isolate the CSS only to the relevant classes
+
+63. Firestore is considered a NoSQL Database
+
+64. You can convert from functional component to class component. See shop.component.jsx 
+
+
+65. Redux Thunk - Asynchronous event handling and firing multiple actions 
+
+66. If redux-thunk middleware is enabled, anytime you attempt to dispatch a function instead of an object...the middleware will call that function with dispatch method itself as the first argument
+
+67. Hence we can dispatch multiple actions 
+
+
+68. Consider redux-thunk vs redux-saga
+
+69. Sagas are kinda like listeners waiting for Actions they are listening into 
+
+70. Sagas handle side effects (API calls to a backend or something which triggers an impure reaction)
+
+71. Generator Function - A function which represents asynchronous awaits (Promise based events)
+
+72. Generators have the ability to "PAUSE" functions by using yield
+
+73. What is the point of the yield ? Our function pauses until we tell it to continue  (until we call .next*) moving forward 
+
+74. 
+take()
+takeEvery()
+takeLatest()
+
+75. all() - Takes an array of sagas. If we want to render three sagas, we can use all to run all sagas concurrently 
