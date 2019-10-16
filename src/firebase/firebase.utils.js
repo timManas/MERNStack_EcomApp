@@ -13,6 +13,8 @@ const config = {
   measurementId: "G-PD9ZNX07YQ"
 };
 
+firebase.initializeApp(config);
+
 // Create the user Data 
 export const createUserProfileDocument = async (userAuth, additionalData) => {
   if (!userAuth) {    // User does not exist or not signed in
@@ -43,7 +45,7 @@ export const createUserProfileDocument = async (userAuth, additionalData) => {
   
 }
 
-firebase.initializeApp(config);
+
 
 
 // We add stuff to the Firestore DB
@@ -78,12 +80,21 @@ export const convertCollectionsSnapshotToMap = (collections) => {
   }, {})
 }
 
+export const getCurrentUser = () => {
+  return new Promise((resolve, reject) => {
+    const unsubscribe = auth.onAuthStateChanged(userAuth => {
+      unsubscribe();
+      resolve(userAuth);
+    }, reject);
+  });
+};
+
 export const auth = firebase.auth(); // We need this for anyhing related to authentication
 export const firestore = firebase.firestore();
 
-const provider = new firebase.auth.GoogleAuthProvider(); // Google Authentication
-provider.setCustomParameters({ prompt: "select_account" }); // We want to trigger the google pop up  for user signin
-export const signInWithGoogle = () => auth.signInWithPopup(provider);
+export const googleProvider = new firebase.auth.GoogleAuthProvider(); // Google Authentication
+googleProvider.setCustomParameters({ prompt: "select_account" }); // We want to trigger the google pop up  for user signin
+export const signInWithGoogle = () => auth.signInWithPopup(googleProvider);
 
 export default firebase;
 

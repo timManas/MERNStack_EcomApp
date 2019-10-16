@@ -1,20 +1,19 @@
 import React from 'react';
+import { Switch, Route, Redirect } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { createStructuredSelector } from 'reselect';
+
 import './App.css';
 
-import { connect } from 'react-redux'
-import { Switch, Route, Redirect } from 'react-router-dom';
-
 import HomePage from './pages/homepage/homepage.component';
-import ShopPage from './pages/shop/shop.component'
-import SignInAndSignUpPage from './pages/sign-in-and-sign-up/sign-in-and-sign-up.component'
-import Header from './components/header/header.component'
-import { auth, createUserProfileDocument } from './firebase/firebase.utils'    // We need this to store the state of our app whenever our user logs in
-import { setCurrentUser } from './redux/user/user.actions'
+import ShopPage from './pages/shop/shop.component';
+import SignInAndSignUpPage from './pages/sign-in-and-sign-up/sign-in-and-sign-up.component';
+import CheckoutPage from './pages/checkout/checkout.component';
 
-import { createStructuredSelector } from 'reselect'
-import { selectCurrentUser } from './redux/user/user.selectors'
+import Header from './components/header/header.component';
 
-import CheckoutPage from './pages/checkout/checkout.component'
+import { selectCurrentUser } from './redux/user/user.selectors';
+import { checkUserSession } from './redux/user/user.actions';
 
 // The switch element tag here acts like a switch statement
 // It will only route to one  destination while ignoring other routes
@@ -26,27 +25,8 @@ class App extends React.Component {
   // Check if the same user is signed in. If yes, they dont change the session. Firebase will assume
   // Same user is logged in
   componentDidMount() {
-
-    const {setCurrentUser} = this.props
-
-    this.unsubscribeFromAuth = auth.onAuthStateChanged(async userAuth => {
-      // this.setState({currentUser: user});
-      // createUserProfileDocument(user)
-
-      if (userAuth) {
-        const userRef = await createUserProfileDocument(userAuth)
-        
-        userRef.onSnapshot(snapShot => {
-          setCurrentUser({
-            id: snapShot.id,
-                ...snapShot.data()
-          })
-        }) 
-      } 
-
-      setCurrentUser(userAuth)
-      
-    })
+    const { checkUserSession } = this.props;
+    checkUserSession();
   }
 
   // This will close the subscription if the user is logged out, session change...etc
@@ -79,8 +59,8 @@ const mapStateToProps = createStructuredSelector(
 // Question: What is dispatch in this case ? 
 // - dispatch() is a way for redux to know what object is being passed is an action object that will be passed it to user
 const mapDispatchToProps = dispatch => ({
-  setCurrentUser: user => dispatch(setCurrentUser(user))
-})
+  checkUserSession: () => dispatch(checkUserSession())
+});
 
 
 export default connect(mapStateToProps, mapDispatchToProps)(App)
